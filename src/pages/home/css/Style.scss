@@ -1,0 +1,28 @@
+$light-color: #4a4a4a;
+
+.logo {
+
+  img {
+    width: 200px;
+    cursor: pointer;
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+}
+.header-bar{
+    display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.menu-bar {
+  ul {
+    display: flex;
+    gap: 40px;
+    li {
+      list-style-type: none;
+     font-size: 14px;
+    }
+  }
+}
