@@ -65,15 +65,18 @@ function MainCard({ childData }) {
               />
             </div>
             <div className="card-footer">
-            <div className="links">
-                  {links.map((v, i) => (
-                    <div key={i}>
-                      <span>
-                        <a href={v} target="_blank"> {v} </a>
-                      </span>
-                    </div>
-                  ))}
-                </div>
+              <div className="links">
+                {links.map((v, i) => (
+                  <div key={i}>
+                    <span>
+                      <a href={v} target="_blank">
+                        {" "}
+                        {v}{" "}
+                      </a>
+                    </span>
+                  </div>
+                ))}
+              </div>
               <div className="btn-section">
                 <button onClick={() => clearData()} className="clear-btn">
                   Clear
