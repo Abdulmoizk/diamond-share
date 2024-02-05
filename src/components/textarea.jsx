@@ -1,5 +1,5 @@
 import "./index.scss";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 
 function Textarea({value, onChange}) {
     const textareaRef = useRef();
@@ -7,6 +7,9 @@ function Textarea({value, onChange}) {
     textareaRef.current.style.height= "24px";
     textareaRef.current.style.height= textareaRef.current.scrollHeight + 12 +"px";
     }
+    useEffect(() => {
+        resizeTextarea();
+    }, [value]);
   return (
     <textarea value={value} onChange={onChange} className="text-area" onInput={resizeTextarea} ref={textareaRef} placeholder="Type something..."></textarea>
   );

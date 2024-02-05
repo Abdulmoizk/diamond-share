@@ -5,7 +5,6 @@ $white: #fff;
 $background: #f4f4f4;
 $gradient: linear-gradient(to bottom, $primary-color, $primary-light-color);
 
-
 body {
   background-color: $background;
   font-family: "Open Sans", sans-serif;
@@ -86,6 +85,27 @@ body {
     .resize-section {
       width: 100%;
     }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .links {
+        flex: 1;
+        div {
+          margin-bottom: 5px;
+          span {
+            a {
+              color: #638eff;
+              font-size: medium;
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
     .btn-section {
       padding: 10px 0;
       text-align: right;
@@ -118,9 +138,9 @@ body {
           svg {
             font-size: 20px;
           }
-          span{
+          span {
             font-size: 14px;
-            &:hover{
+            &:hover {
               text-decoration: underline;
             }
           }
@@ -134,10 +154,10 @@ body {
           svg {
             font-size: 20px;
           }
-          span{
+          span {
             font-size: 14px;
 
-            &:hover{
+            &:hover {
               text-decoration: underline;
             }
           }
@@ -146,7 +166,7 @@ body {
     }
   }
 }
-.back-btn{
+.back-btn {
   opacity: 1;
   position: relative;
   min-height: 61px;

@@ -28,7 +28,6 @@ function MainCard({ childData }) {
     set(ref(db, "sharing"), {
       text: textValue,
     });
-    console.log(textValue);
   };
   useEffect(() => {
     const starCountRef = ref(db, "sharing");
@@ -45,6 +44,10 @@ function MainCard({ childData }) {
     setTextValue("");
     setIsText(false);
   };
+  var expression =
+    /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+  var regex = new RegExp(expression);
+  const links = textValue.match(regex) || [];
   return (
     <div className="main-card">
       <CardSidebar setType={updateType} />
@@ -61,22 +64,33 @@ function MainCard({ childData }) {
                 }}
               />
             </div>
-            <div className="btn-section">
-              <button onClick={() => clearData()} className="clear-btn">
-                Clear
-              </button>
-              {!isText ? (
-                <ThemeButton
-                  onClick={() => saveChanges()}
-                  disabled={textValue ? false : true}
-                  title={"Save"}
-                />
-              ) : (
-                <ThemeButton
-                  onClick={() => navigator.clipboard.writeText(textValue)}
-                  title={"Copy"}
-                />
-              )}
+            <div className="card-footer">
+            <div className="links">
+                  {links.map((v, i) => (
+                    <div key={i}>
+                      <span>
+                        <a href={v} target="_blank"> {v} </a>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              <div className="btn-section">
+                <button onClick={() => clearData()} className="clear-btn">
+                  Clear
+                </button>
+                {!isText ? (
+                  <ThemeButton
+                    onClick={() => saveChanges()}
+                    disabled={textValue ? false : true}
+                    title={"Save"}
+                  />
+                ) : (
+                  <ThemeButton
+                    onClick={() => navigator.clipboard.writeText(textValue)}
+                    title={"Copy"}
+                  />
+                )}
+              </div>
             </div>
           </div>
         ) : (
