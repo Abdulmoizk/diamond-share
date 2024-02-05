@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import './pages/home/css/Style.scss'
 import AppRouter from './config/Router'
 
 function App() {
