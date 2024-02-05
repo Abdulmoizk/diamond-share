@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../pages/home/css/Style.scss";
 import CardSidebar from "./CardSidebar";
 import Textarea from "./textarea";
@@ -7,11 +7,13 @@ import Dropzone from "./dropzone";
 import FilesList from "./fileslist";
 import { ImDownload } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
+import { db, set, ref, onValue, remove } from "../config/db/Firebase";
 
 function MainCard({ childData }) {
   const [type, setType] = useState("text");
   const [textValue, setTextValue] = useState("");
   const [files, setFiles] = useState([]);
+  const [isText, setIsText] = useState(false);
 
   const updateType = (newType) => {
     setType(newType);
@@ -22,7 +24,27 @@ function MainCard({ childData }) {
   const deleteAll = () => {
     setFiles([]);
   };
-
+  const saveChanges = () => {
+    set(ref(db, "sharing"), {
+      text: textValue,
+    });
+    console.log(textValue);
+  };
+  useEffect(() => {
+    const starCountRef = ref(db, "sharing");
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      setTextValue(data.text);
+      if (data.text) {
+        setIsText(true);
+      }
+    });
+  }, []);
+  const clearData = async () => {
+    await remove(ref(db, "sharing"));
+    setTextValue("");
+    setIsText(false);
+  };
   return (
     <div className="main-card">
       <CardSidebar setType={updateType} />
@@ -33,12 +55,28 @@ function MainCard({ childData }) {
             <div className="resize-section">
               <Textarea
                 value={textValue}
-                onChange={(e) => setTextValue(e.target.value)}
+                onChange={(e) => {
+                  setTextValue(e.target.value);
+                  setIsText(false);
+                }}
               />
             </div>
             <div className="btn-section">
-              <button className="clear-btn">Clear</button>
-              <ThemeButton disabled={textValue ? false : true} title={"Save"} />
+              <button onClick={() => clearData()} className="clear-btn">
+                Clear
+              </button>
+              {!isText ? (
+                <ThemeButton
+                  onClick={() => saveChanges()}
+                  disabled={textValue ? false : true}
+                  title={"Save"}
+                />
+              ) : (
+                <ThemeButton
+                  onClick={() => navigator.clipboard.writeText(textValue)}
+                  title={"Copy"}
+                />
+              )}
             </div>
           </div>
         ) : (
@@ -50,7 +88,7 @@ function MainCard({ childData }) {
                   <ImDownload />
                   <span>Download All</span>
                 </div>
-                <div onClick={()=>deleteAll()} className="delete">
+                <div onClick={() => deleteAll()} className="delete">
                   <MdDelete />
                   <span>Delete All</span>
                 </div>
