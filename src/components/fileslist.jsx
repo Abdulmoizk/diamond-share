@@ -10,6 +10,7 @@ function FilesList({ files, onDrop }) {
     <div className="files-list">
       {files.map((file, index) => {
         let icon;
+        // console.log(file);
         switch (file.type) {
           case "text/html":
             icon = <FaHtml5 />;

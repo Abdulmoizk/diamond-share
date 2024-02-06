@@ -5,6 +5,16 @@ $white: #fff;
 $background: #f4f4f4;
 $gradient: linear-gradient(to bottom, $primary-color, $primary-light-color);
 
+/* TextAreaWithCodeFormat.css */
+
+.code-format {
+  font-family: monospace; /* Use a monospaced font for code */
+  white-space: pre-wrap; /* Preserve line breaks and wrap content */
+  background-color: #f4f4f4; /* Add a background color for better visibility */
+  padding: 10px; /* Add some padding for better readability */
+  border: 1px solid #ccc; /* Add a border for better distinction */
+}
+
 .text-area {
   font-size: 22px;
   letter-spacing: -0.7px;
@@ -77,6 +87,7 @@ $gradient: linear-gradient(to bottom, $primary-color, $primary-light-color);
 }
 .files-list {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   .uploaded-list {
     display: flex;
@@ -90,11 +101,7 @@ $gradient: linear-gradient(to bottom, $primary-color, $primary-light-color);
     .image-preview{
       width: 100%;
       height: 100%;
-      // img {
-      //   width: 100%;
-      //   height: 100%;
-      //   object-fit: cover;
-      // }
+     
     }
 
     svg {

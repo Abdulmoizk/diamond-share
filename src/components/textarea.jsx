@@ -10,6 +10,7 @@ function Textarea({value, onChange}) {
     useEffect(() => {
         resizeTextarea();
     }, [value]);
+    
   return (
     <textarea value={value} onChange={onChange} className="text-area" onInput={resizeTextarea} ref={textareaRef} placeholder="Type something..."></textarea>
   );
