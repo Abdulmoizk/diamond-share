@@ -24,18 +24,21 @@ function MainCard({ childData }) {
   const [textValue, setTextValue] = useState("");
   const [files, setFiles] = useState([]);
   const [isText, setIsText] = useState(false);
+  const [tempFiles, settempFiles] = useState([]);
 
   const updateType = (newType) => {
     setType(newType);
   };
-  const onDrop = async acceptedFiles => {
-    setFiles([...files, ...acceptedFiles]);
-    let arr=[];
-    for(var i = 0; acceptedFiles.length > i; i++){
-      arr.push(uploadFile(acceptedFiles[i],i))
+  const onDrop = async (acceptedFiles) => {
+    settempFiles([...files, ...acceptedFiles]);
+    let arr = [];
+    for (var i = 0; acceptedFiles.length > i; i++) {
+      arr.push(uploadFile(acceptedFiles[i], i));
     }
-    const allFiles = await Promise.all(arr)
-    console.log("allFiles", allFiles)
+    const allFiles = await Promise.all(arr);
+    console.log("allFiles", allFiles);
+    setFiles([...files, ...allFiles]);
+    settempFiles([]);
   };
   const deleteAll = () => {
     setFiles([]);
@@ -89,8 +92,7 @@ function MainCard({ childData }) {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-           resolve({downloadURL});
-           
+            resolve({ url: downloadURL, name: file.name, type: file.type });
           });
         }
       );
@@ -160,15 +162,15 @@ function MainCard({ childData }) {
                 </div>
               </div>
             </div>
-            {!files.length ? (
+            {tempFiles.length || files.length ? (
+              <FilesList tempFiles={tempFiles} files={files} onDrop={onDrop} />
+            ) : (
               <Dropzone
                 title={
                   <p>Drag 'n' drop some files here, or click to select files</p>
                 }
                 onDrop={onDrop}
               />
-            ) : (
-              <FilesList files={files} onDrop={onDrop} />
             )}
           </div>
         )}
