@@ -4,8 +4,9 @@ import Dropzone from "./dropzone";
 import { FaPlus } from "react-icons/fa6";
 import { FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
+import { Spin } from "antd";
 
-function FilesList({ tempFiles , files, onDrop }) {
+function FilesList({ tempFiles, files, onDrop }) {
   return (
     <div className="files-list">
       {files.map((file, index) => {
@@ -25,24 +26,23 @@ function FilesList({ tempFiles , files, onDrop }) {
             break;
         }
         return (
-          <div className="uploaded-list" key={index}>
-            {file.type.indexOf("image") !== -1 ? (
-              <img
-                className="image-preview"
-                src={URL.createObjectURL(file.url)}
-                alt={file.name}
-              />
-              // console.log("file", file.url)
-            ) : (
-              <>
-                {icon}
-                <span>
-                  {file.name.slice(0, 10) + "..."}
-                  <strong>{file.name.slice(file.name.lastIndexOf("."))}</strong>
-                </span>
-              </>
-            )}
-          </div>
+          <a className="uploaded-list" key={index} href={file.url} download target="_blank">
+            <div >
+              {file.type.indexOf("image") !== -1 ? (
+                <img className="image-preview" src={file.url} alt={file.name} />
+              ) : (
+                <>
+                  {icon}
+                  <span>
+                    {file.name.slice(0, 10) + "..."}
+                    <strong>
+                      {file.name.slice(file.name.lastIndexOf("."))}
+                    </strong>
+                  </span>
+                </>
+              )}
+            </div>{" "}
+          </a>
         );
       })}
       {tempFiles.map((file, index) => {
@@ -62,11 +62,11 @@ function FilesList({ tempFiles , files, onDrop }) {
             break;
         }
         return (
-          <div className="uploaded-list" key={index}>
+          <div className="uploaded-list temp-file" key={index}>
             {file.type.indexOf("image") !== -1 ? (
               <img
                 className="image-preview"
-                src={URL.createObjectURL(file)}
+                src={file.url || URL.createObjectURL(file)}
                 alt={file.name}
               />
             ) : (
@@ -78,6 +78,7 @@ function FilesList({ tempFiles , files, onDrop }) {
                 </span>
               </>
             )}
+            <Spin />
           </div>
         );
       })}

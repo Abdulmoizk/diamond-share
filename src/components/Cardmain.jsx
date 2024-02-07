@@ -18,6 +18,8 @@ import {
   getDownloadURL,
   storageRef,
 } from "../config/db/Firebase";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 function MainCard({ childData }) {
   const [type, setType] = useState("text");
@@ -33,23 +35,50 @@ function MainCard({ childData }) {
     settempFiles([...files, ...acceptedFiles]);
     let arr = [];
     for (var i = 0; acceptedFiles.length > i; i++) {
-      arr.push(uploadFile(acceptedFiles[i], i));
+      arr.push(uploadFile(acceptedFiles[i], files + i));
     }
     const allFiles = await Promise.all(arr);
     console.log("allFiles", allFiles);
     setFiles([...files, ...allFiles]);
     settempFiles([]);
+    set(ref(db, "file-sharing"), {
+      files: [...files, ...allFiles],
+    });
   };
-  const deleteAll = () => {
+  const downloadAll = () => {
+    let filename = "AllFiles";
+    const zip = new JSZip();
+    const folder = zip.folder("project");
+    files.forEach((file) => {
+      const blobPromise = fetch(file.url).then(function (response) {
+        if (response.status === 200 || response.status === 0) {
+          return Promise.resolve(response.blob());
+        } else {
+          return Promise.reject(new Error(response.statusText));
+        }
+      });
+      const name = file.name;
+      folder.file(name, blobPromise);
+    });
+
+    zip
+      .generateAsync({ type: "blob" })
+      .then((blob) => saveAs(blob, filename))
+      .catch((e) => console.log(e));
+  };
+  const deleteAll = async () => {
+    // setFiles([]);
+    await remove(ref(db, "file-sharing"));
     setFiles([]);
+    settempFiles([]);
   };
   const saveChanges = () => {
-    set(ref(db, "sharing"), {
+    set(ref(db, "text-sharing"), {
       text: textValue,
     });
   };
   useEffect(() => {
-    const starCountRef = ref(db, "sharing");
+    const starCountRef = ref(db, "text-sharing");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       setTextValue(data.text);
@@ -57,9 +86,14 @@ function MainCard({ childData }) {
         setIsText(true);
       }
     });
+    const fileCountRef = ref(db, "file-sharing");
+    onValue(fileCountRef, (snapshot) => {
+      const data = snapshot.val();
+      setFiles(data.files);
+    });
   }, []);
   const clearData = async () => {
-    await remove(ref(db, "sharing"));
+    await remove(ref(db, "text-sharing"));
     setTextValue("");
     setIsText(false);
   };
@@ -152,7 +186,7 @@ function MainCard({ childData }) {
             <div className="file-header">
               <h1>Files</h1>
               <div className="file-btn">
-                <div className="download">
+                <div onClick={() => downloadAll()} className="download">
                   <ImDownload />
                   <span>Download All</span>
                 </div>
