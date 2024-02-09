@@ -12,7 +12,7 @@ function Tutorial() {
           <div>
             <h2>1.</h2>
             <p>
-              <strong>Upload</strong> to AirForShare anything you want
+              <strong>Upload</strong> to Diamond Share anything you want
             </p>
           </div>
           <div>
