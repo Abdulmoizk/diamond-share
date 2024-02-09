@@ -32,7 +32,7 @@ function MainCard({ childData }) {
     setType(newType);
   };
   const onDrop = async (acceptedFiles) => {
-    settempFiles([...files, ...acceptedFiles]);
+    settempFiles([...tempFiles, ...acceptedFiles]);
     let arr = [];
     for (var i = 0; acceptedFiles.length > i; i++) {
       arr.push(uploadFile(acceptedFiles[i], files + i));

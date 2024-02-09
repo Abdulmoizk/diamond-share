@@ -19,7 +19,9 @@ function Header() {
     <div className="">
       <div className="header-bar">
         <div className="logo">
+          <Link to={"/"}>
           <img src={LOGO_Light} alt="" />
+          </Link>
         </div>
         <div className="menu-bar">
           <ul>
