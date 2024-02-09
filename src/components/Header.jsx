@@ -48,9 +48,9 @@ function Header() {
                 </Link>
               </span>
             </li>
-            <li>
+            {/* <li>
               <MdLightMode size={"20"} color="#4a4a4a" />
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
