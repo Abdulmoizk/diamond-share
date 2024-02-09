@@ -203,12 +203,11 @@ footer {
   border: 1px solid $white;
   border-radius: 5px;
 
-
   .center-div {
     margin: 30px auto;
     width: 100%;
     max-width: 430px;
-    
+
     .sec-1 {
       text-align: center;
       button {
@@ -243,12 +242,12 @@ footer {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        a{
+        a {
           font-family: "Open Sans", sans-serif;
           font-weight: 400;
           color: #638eff;
           text-decoration: none;
-        font-size: 14px;
+          font-size: 14px;
         }
         span {
           font-family: "Open Sans", sans-serif;
@@ -291,7 +290,7 @@ footer {
         color: #000;
         font-family: "Open Sans", sans-serif;
         font-weight: 700;
-        &::placeholder{
+        &::placeholder {
           font-weight: 400;
           font-size: medium;
           letter-spacing: -0.4px;
@@ -301,10 +300,10 @@ footer {
           outline: none;
         }
       }
-      p{
+      p {
         text-align: center;
         color: #c9c9c9;
-        a{
+        a {
           font-family: "Open Sans", sans-serif;
           font-weight: 400;
           color: #638eff;
@@ -339,7 +338,53 @@ footer {
     }
   }
 }
-.div-div{
+.div-div {
   display: flex;
-  margin: 3% 0px;
+  margin: auto 0px;
+}
+.tutorial {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: $white;
+  width: 100%;
+  min-height: 390px;
+  margin-top: 0px;
+  box-shadow: 0 21px 33px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid $white;
+  border-radius: 5px;
+  .sec-1 {
+    text-align: center;
+    margin: auto 0;
+    .title {
+      span {
+        font-size: 28px;
+        font-weight: 200;
+      }
+      p {
+        font-size: 20px;
+        font-weight: 300;
+        color: #c9c9c9;
+      }
+    }
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      div {
+        max-width: 200px;
+        h2 {
+          font-size: 70px;
+          color: #c9c9c9;
+          font-weight: 400;
+          font-family: "Open Sans", sans-serif;
+          margin: 0;
+          margin-top: 30px;
+        }
+        p {
+          font-size: larger;
+        }
+      }
+    }
+  }
 }

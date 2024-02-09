@@ -1,8 +1,6 @@
-import LoginForm from "./LoginForm";
 import { Button } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import "./index.scss";
-import AppForm from "./antd/form";
 import ThemeButton from "./button";
 import { Link } from "react-router-dom";
 
