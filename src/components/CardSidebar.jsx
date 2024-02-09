@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BsTextCenter , BsFileEarmarkPlus } from "react-icons/bs";
+import "./index.scss";
 
 function CardSidebar({ setType }) {
   const [type, setLocalType] = useState("text");

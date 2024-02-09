@@ -414,3 +414,11 @@ footer {
     }
   }
 }
+.card-sidebar{
+  div{
+    background-color: $white;
+  }
+  svg{
+    cursor: pointer;
+  }
+}
