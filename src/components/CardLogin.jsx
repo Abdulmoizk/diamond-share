@@ -77,6 +77,7 @@ function LoginCard() {
               <label htmlFor="">Email</label>
               <br />
               <input
+                placeholder="Enter your email address"
                 type="text"
                 {...register("email", {
                   required: "Email is required",
@@ -92,6 +93,7 @@ function LoginCard() {
               <label htmlFor="">Password</label>
               <br />
               <input
+                placeholder="Enter your password"
                 type="password"
                 {...register("password", {
                   required: "Password is required",

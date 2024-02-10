@@ -6,8 +6,13 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import { getAuth, signInWithPopup, GoogleAuthProvider,signInWithEmailAndPassword ,
- } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyBQJEU5M0vhmwcQd_pLB4SRffm0fELEBdE",
   authDomain: "abdul-moiz-11cd1.firebaseapp.com",
@@ -41,5 +46,6 @@ export {
   provider,
   auth,
   GoogleAuthProvider,
-  signInWithEmailAndPassword ,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
 };

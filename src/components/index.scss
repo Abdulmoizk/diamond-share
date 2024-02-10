@@ -306,14 +306,12 @@ footer {
           outline: none;
         }
       }
-      span{
-
-        p{
-          text-align: left !important;
-          color: red !important;
+      span {
+        p {
+          text-align: left;
+          color: #db132b;
           font-size: 12px;
           margin-top: 5px;
-          
         }
       }
       textarea {
@@ -424,8 +422,8 @@ footer {
     }
   }
 }
-.card-sidebar{
-  svg{
+.card-sidebar {
+  svg {
     cursor: pointer;
   }
 }
