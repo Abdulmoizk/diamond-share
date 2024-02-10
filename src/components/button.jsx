@@ -1,8 +1,9 @@
 import "./index.scss";
 
-function ThemeButton({ disabled, onClick, title }) {
+function ThemeButton({ submit, disabled, onClick, title }) {
   return (
     <button
+      type={submit || null}
       disabled={disabled}
       style={{
         borderColor: disabled && "#a1a3a1",

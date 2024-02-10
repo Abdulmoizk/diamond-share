@@ -1,7 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, onValue, remove } from "firebase/database";
-import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL  } from "firebase/storage";
-
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import { getAuth, signInWithPopup, GoogleAuthProvider,signInWithEmailAndPassword ,
+ } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyBQJEU5M0vhmwcQd_pLB4SRffm0fELEBdE",
   authDomain: "abdul-moiz-11cd1.firebaseapp.com",
@@ -17,5 +23,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 const storage = getStorage();
+const provider = new GoogleAuthProvider();
+const auth = getAuth();
 
-export { db, app, ref, set, onValue, remove, storage ,storageRef, uploadBytesResumable, getDownloadURL };
+export {
+  db,
+  app,
+  ref,
+  set,
+  onValue,
+  remove,
+  storage,
+  storageRef,
+  uploadBytesResumable,
+  getDownloadURL,
+  signInWithPopup,
+  provider,
+  auth,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword ,
+};
