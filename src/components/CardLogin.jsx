@@ -77,13 +77,13 @@ function LoginCard() {
               <label htmlFor="">Email</label>
               <br />
               <input
-                placeholder="Enter your email address"
+                placeholder="*Enter your email address"
                 type="text"
                 {...register("email", {
-                  required: "Email is required",
+                  required: "*Email is required",
                   pattern: {
                     value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                    message: "Invalid Email Address",
+                    message: "*Invalid Email Address",
                   },
                 })}
               />
@@ -93,23 +93,23 @@ function LoginCard() {
               <label htmlFor="">Password</label>
               <br />
               <input
-                placeholder="Enter your password"
+                placeholder="*Enter your password"
                 type="password"
                 {...register("password", {
-                  required: "Password is required",
+                  required: "*Password is required",
                   minLength: {
                     value: 8,
-                    message: "Password must be at least 8 characters long",
+                    message: "*Password must be at least 8 characters long",
                   },
                   maxLength: {
                     value: 20,
-                    message: "Password must not exceed 20 characters",
+                    message: "*Password must not exceed 20 characters",
                   },
                   pattern: {
                     value:
                       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                     message:
-                      "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character.",
+                      "*Password must contain at least one uppercase letter, one lowercase letter, one number and one special character.",
                   },
                 })}
               />
